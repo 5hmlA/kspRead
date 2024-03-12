@@ -81,7 +81,7 @@ class TestProcessor(
                     //变量 的修饰符 OPEN  PRIVATE  LATEINIT
                     log("modifiers  ${it.name}")
                 }
-                log("name ${it.simpleName.getShortName()} paname ${it.packageName.getShortName()}  ${it.qualifiedName?.getShortName()}")
+                log("name ${it.simpleName.getShortName()} paname ${it.packageName.getShortName()}  ${it.type}")
             } else if (it is KSClassDeclaration) {
                 //被注解的对象是 类
                 //类的修饰符 OPEN PRIVATE
