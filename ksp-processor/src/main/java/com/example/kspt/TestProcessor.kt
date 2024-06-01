@@ -41,7 +41,7 @@ class TestProcessor(
             package com.example.kspt
             import com.example.kspt.Testt
             
-            class Test{
+            class Testksp{
 
                 @Testt
                 fun testAnnInTest():String{ return "" }

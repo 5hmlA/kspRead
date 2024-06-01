@@ -3,9 +3,8 @@ plugins {
     //https://github.com/google/ksp/releases
     //libs.plugins.android.application必须在最上面
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.compose)
     alias(libs.plugins.ksp)
-//    alias(libs.plugins.kotlin.android)
 }
 
 ksp {
@@ -34,18 +33,14 @@ android {
         }
     }
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask::class.java) {
+        compilerOptions {
+            freeCompilerArgs.add("-Xcontext-receivers")
+        }
     }
 
-    kotlinOptions {
-        freeCompilerArgs = listOf("-Xcontext-receivers")
-        jvmTarget = "17"
-    }
-
-    buildFeatures {
-        viewBinding = true
+    composeCompiler {
+        enableStrongSkippingMode = true
     }
 
     namespace = "com.example.ksptt"
@@ -57,10 +52,7 @@ dependencies {
     val composeBom = platform(libs.androidx.compose.bom)
     implementation(composeBom)
     implementation(libs.bundles.compose)
-    implementation(libs.bundles.android.accompanist)
-    implementation(libs.bundles.android.project)
-    implementation(libs.navigation.fragment.ktx)
-    implementation(libs.bundles.android.view)
+    implementation(libs.androidx.appcompat)
     testImplementation(libs.test.junit)
     androidTestImplementation(libs.bundles.androidx.benchmark)
 }

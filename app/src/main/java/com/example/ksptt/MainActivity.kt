@@ -1,39 +1,34 @@
 package com.example.ksptt
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Column
+import androidx.compose.material.Surface
+import androidx.compose.material3.Text
 import com.example.kspt.Testt
-import com.example.ksptt.databinding.ActivityMainBinding
 
 @Testt(value = "MainActivity", data = 100)
 open class MainActivity : AppCompatActivity() {
 
     @Testt
-    private lateinit var appBarConfiguration: AppBarConfiguration
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var appBarConfiguration: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContent {
+            Surface {
+                Column {
+                    Text(text = "你")
+                    Text(text = "好")
+                    Text(text = "世")
+                    Text(text = "界")
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        setSupportActionBar(binding.toolbar)
-
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
-        appBarConfiguration = AppBarConfiguration(navController.graph)
-        setupActionBarWithNavController(navController, appBarConfiguration)
-
-        binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+                }
+            }
         }
     }
 
@@ -54,9 +49,7 @@ open class MainActivity : AppCompatActivity() {
     }
     @Testt
     override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
-        return navController.navigateUp(appBarConfiguration)
-                || super.onSupportNavigateUp()
+        return false
     }
     @Testt
     fun testAnnInTest():String{ return "" }

@@ -1,17 +1,11 @@
 import com.google.wireless.android.sdk.stats.GradleBuildVariant.KotlinOptions
 
 plugins {
-//    kotlin("jvm") version (libs.versions.kotlin.asProvider())
     alias(libs.plugins.kotlin.jvm)
 }
 kotlin {
     // Or shorter:
-    jvmToolchain(17)
-
-//    target {
-//        compilerOptions{
-//        }
-//    }
+    jvmToolchain(18)
 }
 
 dependencies {
