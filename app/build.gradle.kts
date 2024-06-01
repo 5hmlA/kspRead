@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 
 plugins {
     //https://github.com/google/ksp/releases
@@ -37,7 +38,16 @@ android {
     tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask::class.java) {
         compilerOptions {
             freeCompilerArgs.add("-Xcontext-receivers")
+            languageVersion.set(KotlinVersion.KOTLIN_2_0)
         }
+    }
+    compileOptions {
+        // Up to Java 11 APIs are available through desugaring
+        // https://developer.android.com/studio/write/java11-minimal-support-table
+        sourceCompatibility = JavaVersion.VERSION_18
+        targetCompatibility = JavaVersion.VERSION_18
+        encoding = "UTF-8"
+        //isCoreLibraryDesugaringEnabled = true
     }
 
     composeCompiler {
@@ -45,11 +55,17 @@ android {
     }
 
     namespace = "com.example.ksptt"
+
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_18
+    targetCompatibility = JavaVersion.VERSION_18
 }
 
 dependencies {
-    implementation(project(mapOf("path" to ":ksp-processor")))
-    ksp(project(mapOf("path" to ":ksp-processor")))
+    implementation(project(":ksp-processor"))
+    ksp(project(":ksp-processor"))
     val composeBom = platform(libs.androidx.compose.bom)
     implementation(composeBom)
     implementation(libs.bundles.compose)

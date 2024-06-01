@@ -24,6 +24,14 @@ class TestProcessor(
         logger.warn("======== $msg")
     }
 
+    override fun onError() {
+        super.onError()
+    }
+
+    override fun finish() {
+        super.finish()
+    }
+
     @OptIn(KspExperimental::class)
     override fun process(resolver: Resolver): List<KSAnnotated> {
         if (invoked) {
@@ -117,6 +125,7 @@ class TestProcessor(
         return resolver.getSymbolsWithAnnotation("com.example.kspt.Testt").toList()
     }
 
+    class FindFunctionsVisitor: KSVisitorVoid()
     //访问者模式 可遍历 文件 类 方法 成员变量
     inner class TestVisitor : KSVisitor<String, Unit> {
 
