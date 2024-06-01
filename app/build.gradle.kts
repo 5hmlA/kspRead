@@ -3,6 +3,7 @@ plugins {
     //https://github.com/google/ksp/releases
     //libs.plugins.android.application必须在最上面
     alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.compose)
     alias(libs.plugins.ksp)
 }
