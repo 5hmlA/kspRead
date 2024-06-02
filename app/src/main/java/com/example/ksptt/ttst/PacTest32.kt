@@ -3,7 +3,7 @@ package com.example.ksptt.ttst
 import com.example.kspt.Testt
 
 @Testt("class", data = 100)
-class PacTest32 {
+open class PacTest32 {
     @Testt("filed, a", data = 90)
     var a = 90
 

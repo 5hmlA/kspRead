@@ -4,6 +4,11 @@ plugins {
     alias(libs.plugins.ksp)
 }
 
+ksp {
+    arg("option1", "value1")
+    arg("option2", "value2")
+}
+
 java {
     sourceCompatibility = JavaVersion.VERSION_18
     targetCompatibility = JavaVersion.VERSION_18

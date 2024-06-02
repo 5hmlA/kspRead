@@ -1,4 +1,4 @@
-import com.google.wireless.android.sdk.stats.GradleBuildVariant.KotlinOptions
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.kotlin.jvm)
@@ -7,6 +7,12 @@ plugins {
 kotlin {
     // Or shorter:
     jvmToolchain(18)
+    compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_18)
+        freeCompilerArgs.add("-Xcontext-receivers")
+        apiVersion.set(org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_2_0)
+        languageVersion.set(org.jetbrains.kotlin.gradle.dsl.KotlinVersion.KOTLIN_2_0)
+    }
 }
 
 //https://kotlinlang.org/docs/ksp-incremental.html#aggregating-vs-isolating

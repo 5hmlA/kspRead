@@ -1,7 +1,40 @@
 import com.example.kspt.LogVisitor
 import com.google.devtools.ksp.KspExperimental
-import com.google.devtools.ksp.processing.*
-import com.google.devtools.ksp.symbol.*
+import com.google.devtools.ksp.processing.CodeGenerator
+import com.google.devtools.ksp.processing.Dependencies
+import com.google.devtools.ksp.processing.KSPLogger
+import com.google.devtools.ksp.processing.Resolver
+import com.google.devtools.ksp.processing.SymbolProcessor
+import com.google.devtools.ksp.processing.SymbolProcessorEnvironment
+import com.google.devtools.ksp.processing.SymbolProcessorProvider
+import com.google.devtools.ksp.symbol.KSAnnotated
+import com.google.devtools.ksp.symbol.KSAnnotation
+import com.google.devtools.ksp.symbol.KSCallableReference
+import com.google.devtools.ksp.symbol.KSClassDeclaration
+import com.google.devtools.ksp.symbol.KSClassifierReference
+import com.google.devtools.ksp.symbol.KSDeclaration
+import com.google.devtools.ksp.symbol.KSDeclarationContainer
+import com.google.devtools.ksp.symbol.KSDefNonNullReference
+import com.google.devtools.ksp.symbol.KSDynamicReference
+import com.google.devtools.ksp.symbol.KSFile
+import com.google.devtools.ksp.symbol.KSFunctionDeclaration
+import com.google.devtools.ksp.symbol.KSModifierListOwner
+import com.google.devtools.ksp.symbol.KSNode
+import com.google.devtools.ksp.symbol.KSParenthesizedReference
+import com.google.devtools.ksp.symbol.KSPropertyAccessor
+import com.google.devtools.ksp.symbol.KSPropertyDeclaration
+import com.google.devtools.ksp.symbol.KSPropertyGetter
+import com.google.devtools.ksp.symbol.KSPropertySetter
+import com.google.devtools.ksp.symbol.KSReferenceElement
+import com.google.devtools.ksp.symbol.KSTypeAlias
+import com.google.devtools.ksp.symbol.KSTypeArgument
+import com.google.devtools.ksp.symbol.KSTypeParameter
+import com.google.devtools.ksp.symbol.KSTypeReference
+import com.google.devtools.ksp.symbol.KSValueArgument
+import com.google.devtools.ksp.symbol.KSValueParameter
+import com.google.devtools.ksp.symbol.KSVisitor
+import com.google.devtools.ksp.symbol.KSVisitorVoid
+import com.google.devtools.ksp.symbol.Variance
 import java.io.OutputStream
 
 fun OutputStream.appendText(str: String) {
@@ -43,7 +76,7 @@ class TestProcessor(
         val javaFile = codeGenerator.createNewFile(Dependencies(false), "", "Generated", "java")
         javaFile.appendText("class Generated {}")
 
-        val fileKt = codeGenerator.createNewFile(Dependencies(false), "com.test", "HELLO", "kt")
+        val fileKt = codeGenerator.createNewFile(Dependencies(false), "com.test", "HELLO2", "kt")
         fileKt.appendText(
             """
             package com.example.kspt
