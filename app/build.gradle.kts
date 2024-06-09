@@ -65,11 +65,14 @@ java {
 
 dependencies {
     implementation(project(":ksp-processor"))
-    ksp(project(":ksp-processor"))
+    ksp(project(":auto-service"))
+//    ksp(project(":ksp-processor"))
     val composeBom = platform(libs.androidx.compose.bom)
     implementation(composeBom)
     implementation(libs.bundles.compose)
     implementation(libs.androidx.appcompat)
     testImplementation(libs.test.junit)
     androidTestImplementation(libs.bundles.androidx.benchmark)
+    // https://mvnrepository.com/artifact/com.google.auto.service/auto-service
+    implementation("com.google.auto.service:auto-service-annotations:1.1.1")
 }

@@ -19,4 +19,5 @@ dependencyResolutionManagement {
 rootProject.name = "ksptt"
 include ':app'
 include ':ksp-processor'
-include ':jvm-lib'
+//include ':jvm-lib'
+include ':auto-service'
